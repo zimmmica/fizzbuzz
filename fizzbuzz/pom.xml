@@ -1,0 +1,96 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<name>fizzbuzz</name>
+	<packaging>jar</packaging>
+
+	<artifactId>fizzbuzz</artifactId>
+	<groupId>com.fizzbuzz</groupId>
+	<version>1.0.0-RELEASE</version>
+
+
+	<properties>
+
+		<javac.home>${env.JAVA_HOME}</javac.home>
+
+		<project.java.version>8</project.java.version>
+		<project.encoding>UTF-8</project.encoding>
+
+		<maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
+		<maven.resource.plugin.version>3.1.0</maven.resource.plugin.version>
+		<maven.surefire.plugin.version>2.22.2</maven.surefire.plugin.version>
+
+
+	</properties>
+
+
+	<dependencies>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+
+	<build>
+		<plugins>
+
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.plugin.version}</version>
+				<configuration>
+					<fork>true</fork>
+					<executable>${javac.home}/bin/javac</executable>
+					<meminitial>512m</meminitial>
+					<maxmem>1024m</maxmem>
+					<compilerVersion>${project.java.version}</compilerVersion>
+					<source>${project.java.version}</source>
+					<target>${project.java.version}</target>
+					<encoding>${project.encoding}</encoding>
+					<compilerArgs>
+						<arg>-parameters</arg>
+					</compilerArgs>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>${maven.resource.plugin.version}</version>
+				<configuration>
+					<encoding>${project.encoding}</encoding>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven.surefire.plugin.version}</version>
+				<configuration>
+					<argLine>${surefireArgLine}</argLine>
+					<skipTests>${skip.unit.tests}</skipTests>
+					<forkCount>1</forkCount>
+					<reuseForks>true</reuseForks>
+				</configuration>
+			</plugin>
+
+
+		</plugins>
+
+
+		<sourceDirectory>src/main/java/</sourceDirectory>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+	</build>
+
+
+</project>
