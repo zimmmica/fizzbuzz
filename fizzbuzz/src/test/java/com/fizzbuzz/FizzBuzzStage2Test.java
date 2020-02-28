@@ -16,7 +16,7 @@ public final class FizzBuzzStage2Test {
 
 	private ByteArrayOutputStream outContent;
 	private String expected;
-	private FizzBuzzStage2 fizzBuzz;
+	private FizzBuzzGame fizzBuzz;
 
 	@Before
 	public void setUp() throws Exception {
@@ -32,7 +32,7 @@ public final class FizzBuzzStage2Test {
 		}
 		Assert.assertTrue(expected != null && !expected.isEmpty());
 
-		fizzBuzz = new FizzBuzzStage2();
+		fizzBuzz = new FizzBuzzGame();
 	}
 
 	private String getConsole() {
@@ -47,38 +47,21 @@ public final class FizzBuzzStage2Test {
 	@Test(expected = IllegalArgumentException.class)
 	public void testNegativeNumber() {
 
-		fizzBuzz.playFizzBuzz(-1);
+		fizzBuzz.playFizzBuzz(-1, FizzBuzzStage.STAGE2);
+
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testNoStage() {
+
+		fizzBuzz.playFizzBuzz(100, null);
 
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testZeroNumber() {
 
-		fizzBuzz.playFizzBuzz(0);
-
-	}
-
-	@Test
-	public void testFizz() {
-
-		Assert.assertTrue(fizzBuzz.isFizz(6));
-		Assert.assertTrue(fizzBuzz.isFizz(30));
-		Assert.assertTrue(fizzBuzz.isFizz(13));
-
-		Assert.assertFalse(fizzBuzz.isFizz(44));
-		Assert.assertFalse(fizzBuzz.isFizz(17));
-
-	}
-
-	@Test
-	public void testBuzz() {
-
-		Assert.assertTrue(fizzBuzz.isBuzz(15));
-		Assert.assertTrue(fizzBuzz.isBuzz(100));
-		Assert.assertTrue(fizzBuzz.isBuzz(51));
-
-		Assert.assertFalse(fizzBuzz.isBuzz(31));
-		Assert.assertFalse(fizzBuzz.isBuzz(9));
+		fizzBuzz.playFizzBuzz(0, FizzBuzzStage.STAGE2);
 
 	}
 
@@ -97,7 +80,7 @@ public final class FizzBuzzStage2Test {
 		b.append("Fizz");
 		b.append("Buzz");
 
-		fizzBuzz.playFizzBuzz(10);
+		fizzBuzz.playFizzBuzz(10, FizzBuzzStage.STAGE2);
 
 		Assert.assertEquals(b.toString(), getConsole());
 
@@ -106,7 +89,7 @@ public final class FizzBuzzStage2Test {
 	@Test
 	public void testExpected100() {
 
-		fizzBuzz.playFizzBuzz(100);
+		fizzBuzz.playFizzBuzz(100, FizzBuzzStage.STAGE2);
 
 		Assert.assertEquals(expected, getConsole());
 
